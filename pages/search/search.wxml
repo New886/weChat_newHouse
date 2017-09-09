@@ -1,0 +1,38 @@
+<view class="searchBg">
+  <view class="listSearch bgColor">
+    <input placeholder="请输入楼盘名或区域" placeholder-style="font-size: 30rpx; color: #aaa9a6; margin-left: 20rpx;" bindinput="getInputInfo" focus="true"/>
+    <icon type="search" size="18" color="#28bc59"/>
+  </view>
+</view>
+
+<view class="recomList bgColor">
+  <view class="houseList recom borderTopBott" wx:for="{{listData}}" wx:key="index" id="{{item.ID}}" bindtap="toNewHouseDetail">
+    <view class="houseImg" style="text-align: center;">
+      <image src="{{item.fengmiantu.sizes.medium}}" class="recomImg" wx:if="{{item.fengmiantu.sizes.medium}}"></image>
+      <text class="noImg" wx:else>暂无图片</text>
+    </view>
+    <view class="houseInfo">
+      <view class=" fontSize1rem recomMar">
+        {{item.title}}
+      </view>
+      <view class="houseAddr fontSize075 recomColor recomMar">
+        {{item.xiangmudizhi}}
+      </view>
+      <view class="info fontSize075 recomColor recomMar">
+        <text class="zhandi" wx:if="{{item.zhandimianji}}">占地{{item.zhandimianji}}㎡</text>
+        <text class="zhandi" wx:else>暂无数据</text>
+        <text class="price" wx:if="{{item.junjia}}">{{item.junjia}}元/平</text>
+        <text class="price" wx:else>暂无数据</text>
+      </view>
+      <view class="tagBox recomMar">
+        <text class="tag" wx:for="{{item.biaoqian}}">{{item}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="nowLoading" hidden="{{hidden}}">正在加载...</view>
+</view>
+
+<!--暂无数据-->
+<view class="noData" style="display: {{noData}}">暂无数据</view>
+<!--没有等多结果-->
+<view class="noMore" style="display:{{noMore}}">没有更多了...</view>

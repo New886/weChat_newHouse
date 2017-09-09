@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<view class="homeWrap">
+  <view class="a">
+    <swiper autoplay="{{true}}" indicator-dots="{{flase}}" interval="5000" duration="1000">
+      <block wx:for="{{imgData}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item.sizes.large}}" class="topImg" mode="aspectFill"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="services">
+    <view class="wraper">
+      <view class="list" bindtap="toNewHouseList">
+        <image src="../../images/newHouse.png"></image>
+        <text class="desc">新房楼盘</text>
+      </view>
+      <view class="list leftMove" bindtap="toGroupBuyList">
+        <image src="../../images/tuangou.png"></image>
+        <text class="desc">优惠团购</text>
+      </view>
+      <view class="list leftMove" bindtap="toLookHouseList">
+        <image src="../../images/lookHouse.png"></image>
+        <text class="desc">看房团</text>
+      </view>
+   </view>
+  </view>
+  <view class="filtrate bgColor marginTop75 borderTopBott">
+    <view class="filtrateBox {{priceindex == index ? 'active' : ''}}" wx:for="{{menu.junjia}}" wx:key="index" data-priceindex="{{index}}" bindtap="getpriceIndex">{{item}}</view>
+    <view class="filtrateBox {{typeindex == index ? 'active' : ''}}" wx:for="{{menu.fangxing}}" wx:key="index" data-typeindex="{{index}}" bindtap="getTypeIndex">{{item}}</view>
+    <view class="filtrateBox {{stateindex == index ? 'active' : ''}}" wx:for="{{menu.zhuangtai}}" wx:key="index" data-stateindex="{{index}}" bindtap="getStateIndex">{{item}}</view>
+    <view class="filtrateBox">
+      <text class="allBtn" bindtap="toNewHouseList">全部></text>
+    </view>
+  </view>
+  <view class="recomHouses bgColor marginTop75">
+    <view class="recom fontSize1rem borderTopBott recomText">
+      推荐楼盘
+    </view>
+    <view class="recomList">
+      <view class="houseList recom borderTopBott" wx:for="{{homeData}}" id="{{item.ID}}"  bindtap="toNewDetail">
+          <view class="houseImg">
+            <image src="{{item.fengmiantu.sizes.medium}}" class="recomImg"></image>
+          </view>
+          <view class="houseInfo">
+            <view class=" fontSize1rem recomMar">
+              {{item.title}}
+            </view>
+            <view class="houseAddr fontSize075 recomColor recomMar">
+              {{item.xiangmudizhi}}
+            </view>
+            <view class=" fontSize075 recomColor recomMar loaction">
+              <text>占地面积{{item.zhandimianji}}㎡</text>
+              <text class="price" wx:if="{{item.junjia}}">{{item.junjia}}元/平</text>
+              <text class="price" wx:else>暂无数据</text>
+            </view>
+            <view class="tagBox recomMar">
+              <text class="tag" wx:for="{{item.biaoqian}}">{{item}}</text>
+            </view>
+          </view>
+      </view>
+    </view>
+    <view class="moreBtn" bindtap="toNewHouseList">
+      查看更多
+    </view>
+  </view>
+</view>

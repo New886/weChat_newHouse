@@ -1,0 +1,51 @@
+<!--pages/groupBuy/groupBuy.wxml-->
+<view class="container bgColor">
+   <view class="contentWrap" wx:for="{{groupBuyData}}" wx:key="index">
+    <view class="imgWrap">
+		  <image src="{{item.fengmiantu.sizes.medium}}" mode="widthFix"></image>
+      <view class="apply" bindtap="order" data-applyindex="{{index}}">团购报名</view>
+    </view>
+    <view class="infoWrap">
+      <view class="common title">{{item.title}}({{item.baomingrenshu}}人已参加)</view>
+      <view class="common feature">特色:{{item.tese}}</view>
+      <view class="common feature houseType">户型:{{item.huxing}}</view>
+      <view class="common time">还剩:{{item.time}}</view>
+      <view class="before">报名团购优惠早知道</view>
+    </view>
+  </view>         
+</view>
+<view class="a">
+  <view class="teleBg bgColor">
+    <view class="teleBtn" bindtap="calling">
+      看房热线:{{last}}
+    </view>
+  </view>
+</view>
+<view class="hiddenForm bgColor" style="display:{{displayForm}}" >
+  <view class="formInfo">
+    <form bindsubmit="formSubmit">
+      <view class="orderLookHouse fontBold center" style="font-weight: bold">团购报名</view>
+      <view class="detailTitle">
+        {{title}}
+      </view>
+      <view class="name fontSize_30 moveTop">
+        <input  type="text" class="nameInput" placeholder="请输入您的姓名" name="userName" value="{{userName}}"/>
+      </view>
+      <view class="name fontSize_30 moveTop">
+        <input  type="text" class="nameInput" placeholder="请输入您的电话号码" name="teleNumber" bindblur="getNumber" value="{{teleNumber}}"/>
+      </view>
+      <view class="name fontSize_30 moveTop">
+        <textarea placeholder="请输入您的要求" class="nameInput" name="textValue" fixed="true" value="{{textValue}}"/>
+      </view>
+      <view class="name fontSize_30 moveTop move">
+        <input  type="text" class="nameInput checkCode" value="{{clearCode}}" placeholder="请输入验证码" name="code" style="display: inline-block;"/>
+        <text class="code">{{code}}</text>
+      </view>
+      <view class="moveTop redColor">
+        <text>* 温馨提示：联系方式提交后，将会有专业的经纪人联系您，请您耐心等待</text>
+      </view>
+      <button form-type="submit" class="submitBtn moveTop">提交</button>
+      <view class="close" bindtap="close"><image src="../../images/cancel.png" mode="widthFix"></image></view>
+    </form>
+  </view>
+</view>

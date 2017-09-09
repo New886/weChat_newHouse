@@ -1,0 +1,17 @@
+{
+  "pages":[
+    
+    "pages/index/index",
+    "pages/newHouseDetail/newHouseDetail",
+    "pages/newHouseList/newHouseList",
+    "pages/groupBuy/groupBuy",
+    "pages/lookHouse/lookHouse",
+    "pages/search/search"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "null",
+    "navigationBarTextStyle":"black"
+  }
+}

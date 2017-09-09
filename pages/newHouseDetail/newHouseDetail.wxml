@@ -1,0 +1,208 @@
+<!--pages/newHouseDetail/newHouseDetail.wxml-->
+<swiper interval="5000" duration="1000" current="{{currentIndex}}" bindchange="swiperChange">
+  <block wx:for="{{detailData.loupanxiangce}}">
+    <swiper-item  class="slide-image">
+      <image src="{{item.sizes.medium}}" bindtap="previewImg" data-src="{{item.url}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<text class="noImg" style="display:{{displayImg}}">暂无图片</text>
+<text class="imgPage" style="display:{{displayPoint}}">{{num}}/{{imgLength}}</text>
+<view class="titleWrap bgColor clear">
+  <view class="detailTitle">
+    <view class="title">{{detailData.title}}</view>
+    <view class="state clear">{{detailData.wuyeleixing}}·{{detailData.zhuangtai}}</view>
+  </view>
+  <view class="price">
+    <text class="average" wx:if="{{detailData.junjia}}">均价{{detailData.junjia}}/平</text>
+    <text class="average" wx:else>暂无数据</text>
+    <text class="time">更新时间:{{detailData.gengxinshijian}}</text>
+  </view>
+  <view class="tag" style="display:{{displayTag}}">
+    <text class="clear" wx:for="{{detailData.biaoqian}}">{{item}}</text>
+  </view>
+  <view class="location">
+    <view class="addr">
+      {{detailData.xiangmudizhi}}
+    </view>
+    <view class="license" wx:if="{{detailData.yushouxukezheng}}">
+      开发商：{{detailData.kaifashang}}
+    </view>
+    <view class="license" wx:else>预售许可证: 暂无预售许可证</view>
+  </view>
+</view>
+<!--户型介绍-->
+<view class="houseInfo clear bgColor houseIntro">
+  <view class="houseTitle introTitle">
+    主力户型
+    <text class="amount">（{{huxingLength}}种）</text>
+    <text class="leftArrow" wx:if="{{!show}}" bindtap="show"></text>
+    <text class="bottomArrow" wx:else bindtap="hidden"></text>
+  </view>
+  <view class=" {{!show ? 'introHidden' : 'introShow'}}">
+    <view class="houseTypeInfo" wx:for="{{detailData.huxing}}">
+      <view class="houseTypeImg">
+        <image src="{{item.huxingtu.sizes.thumbnail}}" mode="widthFix" wx:if="{{item.huxingtu.sizes.thumbnail}}" bindtap="lookTypeImg" data-src="{{item.huxingtu.url}}"></image>
+        <text class="noImg" wx:else>暂无图片</text>
+      </view>
+      <view class="houseTypeText">
+        <view class="text1">
+          <text>{{item.bianhao}}户型</text>
+          <text>-</text>
+          <text class="onSale">{{item.zhuangtai}}</text>
+        </view>
+        <block wx:for="{{item.jushi}}">
+          <view class="typeFontSize colorGray" wx:if="{{item.mianji}}">{{item.shi}}室{{item.ting}}厅 建面 {{item.mianji}}㎡</view>
+          <view class="typeFontSize colorGray" wx:else>暂无数据</view>
+        </block>
+        <!--<view class="tag" style="background: #f4f7f9;">户型方正</view>-->
+        <block wx:for="{{item.jushi}}">
+          <view class="typeFontSize colorRed" wx:if="{{item.mianji}}">均价{{item.mianji * detailData.junjia}}万/套</view>
+          <view class="typeFontSize colorRed" wx:else>暂无数据</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<!--楼盘信息-->
+<view class="houseInfo clear bgColor">
+  <view class="houseTitle">楼盘信息</view>
+  <view class="basicInfo {{hidden ? 'infoShow' : 'infoHidden'}}">
+    <view class="house license">
+      <text class="info">楼盘别名</text>
+      <text class="details" wx:if="{{detailData.loupanbieming}}">{{detailData.loupanbieming}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">开发商</text>
+      <text class="details" wx:if="{{detailData.kaifashang}}">{{detailData.kaifashang}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">最新开盘</text>
+      <text class="details" wx:if="{{detailData.zuixinkaipan}}">{{detailData.zuixinkaipan}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">交房时间</text>
+      <text class="details" wx:if="{{detailData.jiaofangriqi}}">{{detailData.jiaofangriqi}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">产权年限</text>
+      <text class="details" wx:if="{{detailData.chanquannianxian}}">{{detailData.chanquannianxian}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">预售证号</text>
+      <text class="details" wx:if="{{detailData.yushouxukezheng}}">{{detailData.yushouxukezheng}}</text>
+      <text class="details" wx:else>暂无预售许可证</text>
+    </view>
+    <view class="house license">
+      <text class="info">项目地址</text>
+      <text class="details">{{detailData.xiangmudizhi}}</text>
+    </view>
+    <view class="house license">
+      <text class="info">所属区域</text>
+      <text class="details" wx:if="{{detailData.suoshuquyu}}">{{detailData.suoshuquyu}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">物业类型</text>
+      <text class="details">{{detailData.wuyeleixing}}</text>
+    </view>
+    <view class="house license">
+      <text class="info">装修情况</text>
+      <text class="details" wx:if="{{detailData.zhuangxiuqingkuang}}">{{detailData.zhuangxiuqingkuang}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">车位数量</text>
+      <text class="details" wx:if="{{detailData.cheweishuliang}}">{{detailData.cheweishuliang}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">停车费</text>
+      <text class="details" wx:if="{{detailData.tingchefei}}">{{detailData.tingchefei}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">容积率</text>
+      <text class="details" wx:if="{{detailData.rongjilv}}">{{detailData.rongjilv}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">绿化率</text>
+      <text class="details" wx:if="{{detailData.lvhualv}}">{{detailData.lvhualv}}%</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">占地面积</text>
+      <text class="details" wx:if="{{detailData.zhandimianji}}">{{detailData.zhandimianji}}平米</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">平均价格</text>
+      <text class="details" wx:if="{{detailData.junjia}}">{{detailData.junjia}}元/㎡</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+    <view class="house license">
+      <text class="info">物业公司</text>
+      <text class="details" wx:if="{{detailData.wuyegongsi}}">{{detailData.wuyegongsi}}</text>
+      <text class="details" wx:else>暂无数据</text>
+    </view>
+  </view>
+  <!--<view class="moreBtn clear" bindtap="moreInfo" wx:if="{{!hidden}}">了解更多楼盘信息</view>
+  <view class="moreBtn clear" bindtap="packUpInfo" wx:else>收起更多楼盘信息</view>-->
+</view>
+<!--周边推荐-->
+<view class="houseInfo clear bgColor">
+  <view class="houseTitle">周边推荐</view>
+  <scroll-view class="recommend_scroll_x_box" scroll-x="true" white-space="nowrap">
+    <block wx:for="{{detailData.zhoubiantuijian}}">
+      <view class="recommend_hot_box" bindtap="toNewHouseDetail" id="{{item.ID}}">
+        <image src="{{item.fengmiantu.sizes.medium}}"  style="display: block"></image>
+        <text style="display: block" class="typeFontSize colorRed center">{{item.junjia}}元/平</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!--联系经纪人，预约-->
+<view class=" bgColor clear bottomBtn">
+  <view class="bottom bgColor">
+    <view class="bottomImg"  bindtap="order">
+      <image src="../../images/order.png" mode="widthFix" style="width: 50rpx; display: block;"></image>
+      <text style="display: block;" class="order">预约</text>
+    </view>
+    <view class="contact" bindtap="calling">
+      联系售楼处
+    </view>
+  </view>
+</view>
+<!--弹窗-->
+<view class="hiddenForm bgColor" style="display:{{displayForm}}">
+  <view class="formInfo">
+    <form bindsubmit="formSubmit">
+      <view class="orderLookHouse fontBold center" style="font-weight: bold">预约看房</view>
+      <view class="name fontSize_30 moveTop">
+        <input  type="text" class="nameInput" placeholder="请输入您的姓名" name="userName"/>
+      </view>
+      <view class="name fontSize_30 moveTop">
+        <input  type="text" class="nameInput" placeholder="请输入您的电话号码" name="teleNumber" bindblur="getNumber"/>
+      </view>
+      <view class="name fontSize_30 moveTop">
+        <textarea placeholder="请输入您的要求" class="nameInput" name="textValue" fixed="true"/>
+      </view>
+      <view class="name fontSize_30 moveTop move">
+        <input  type="text" class="nameInput checkCode" placeholder="请输入验证码" name="code" style="display: inline-block;"/>
+        <text class="code">{{item}}</text>
+      </view>
+      <view class="moveTop redColor">
+        <text>* 温馨提示：联系方式提交后，将会有专业的经纪人联系您，请您耐心等待</text>
+      </view>
+      <button form-type="submit" class="submitBtn moveTop">提交</button>
+      <view class="close" bindtap="order"><image src="../../images/cancel.png" mode="widthFix"></image></view>
+    </form>
+  </view>
+</view>
+  

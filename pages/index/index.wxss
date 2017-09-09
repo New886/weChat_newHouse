@@ -1,0 +1,156 @@
+/**index.wxss**/
+.services{
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+.services .wraper{
+  width: 90%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.list{
+  display: inline-block;
+  width: 28%;
+  margin: 20px 7px;
+  font-size: 11px;
+  color: black;
+  text-align: center;
+}
+.list image{
+  width: 55px;
+  height: 55px;
+  display: block;
+  /*margin-bottom: 15px;*/
+  margin: 0rpx auto 15px auto;
+}
+.list .desc{
+  text-align: center;
+}
+.leftMove{
+  margin-left: 20rpx;
+}
+.bgColor{
+  background-color: white;
+}
+.marginTop75{
+  margin-top: .75rem;
+}
+.fontSize1rem{
+  font-size: 1rem;
+}
+.fontSize075{
+  font-size: .75rem;
+}
+.recomColor{
+  color: #8b8b8b;
+}
+.recomMar{
+  margin-bottom: .1rem; 
+}
+.borderTopBott{
+  border-top: 1px solid #e5e5e5;
+}
+.a{
+  position: relative
+}
+.homeTopPic{
+   position: absolute;
+   bottom: 20rpx;
+   left:60rpx;
+   width: 85%;
+   height: 1.4rem;
+   background-color: white;
+   border-radius: 10rpx;
+   display: flex;
+}
+.homeTopPic icon{
+  margin: 10rpx 15rpx;
+}
+.topImg{
+  width: 100%;
+}
+.filtrate{
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap ;
+  padding-top: 1.25rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+}
+.filtrateBox{
+  width: 32.33333%;
+  font-size: .875rem;
+  color: #333;
+  margin-bottom: 1.25rem;
+  border-right: 1px solid  #e5e5e5;
+  text-align: center;
+}
+.filtrate view:nth-child(3n){
+  border-right: none;
+}
+.filtrate view.active{
+  color: #00ae66;
+}
+.allBtn{
+  color: #00ae66;
+}
+.recom{
+  padding: 30rpx 15rpx;
+  box-sizing: border-box
+}
+.houseList{
+  display: flex;
+  flex-direction: row;
+}
+.houseImg{
+  width: 5.75rem;
+  height: 5.2rem;
+}
+.recomImg{
+  width: 100%;
+  height: 100%;
+}
+.houseInfo{
+  margin-left: 20rpx;
+}
+.houseAddr{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 480rpx;
+}
+.tagBox{
+  font-size: .6rem;
+  max-width: 470rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tag{
+  padding: .1rem .3rem;
+  box-sizing: border-box;
+  color: #849aae;
+  background-color: #f4f7f9;
+  margin-left: .3rem;
+}
+.loaction{
+  position: relative;
+  width: 450rpx;
+}
+.price{
+  color: #db4c3f;
+  font-size: .7rem;
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+}
+.moreBtn{
+  height: 3.125rem;
+  line-height: 3.125rem;
+  color: #999;
+  text-align: center;
+  font-size: 30rpx;
+}

@@ -1,0 +1,90 @@
+<!--pages/newHouseList/newHouseList.wxml-->
+<view class="searchBg">
+  <view class="listSearch bgColor" bindtap="tosearch">
+    <input placeholder="请输入楼盘名或区域" placeholder-style="font-size: 30rpx; color: #aaa9a6; margin-left: 20rpx;" bindtap="tosearch"/>
+    <icon type="search" size="18" color="#28bc59"/>
+  </view>
+</view>
+<!--筛选-->
+<view class="filtrate bgColor">
+  <view class="filtrateBox">
+    <text bindtap="showFiltrate" data-findex="1" class="{{showindex == 1 ? 'active' : ''}}">{{addr}}</text>
+    <text bindtap="showFiltrate" data-findex="2" class="{{showindex == 2 ? 'active' : ''}}">{{price}}</text>
+    <text bindtap="showFiltrate" data-findex="3" class="{{showindex == 3 ? 'active' : ''}}">{{room}}</text>
+    <text bindtap="showFiltrate" data-findex="4" class="{{showindex == 4 ? 'active' : ''}}">更多</text>
+  </view>
+</view>
+<!--下拉筛选项-->
+<view class="filtrateItems bgColor">
+  <!--区域-->
+  <view class="items bgColor" wx:if="{{showindex == 1}}">
+    <view wx:for="{{menuData.quyu}}" wx:key="index" bindtap="getAddrindex" data-addrindex="{{index}}" class="{{addrindex==index?'active':''}}">{{item}}
+          </view>
+  </view>
+  <!--售价-->
+  <view class="items bgColor" wx:if="{{showindex == 2}}">
+    <view class="{{priceindex == index ? 'active' : ''}}" wx:for="{{menuData.junjia}}" wx:key="index" data-priceindex="{{index}}" bindtap="getPriceindex">{{item}}</view>
+  </view>
+  <!--房型-->
+  <view class="items bgColor" wx:if="{{showindex == 3}}">
+    <view class="{{roomindex == index ? 'active' : ''}}" wx:for="{{menuData.fangxing}}" wx:key="index" data-roomindex="{{index}}" bindtap="getRoomindex">{{item}}</view>
+  </view>
+  <!--更多-->
+  <view class=" bgColor moreItems"  wx:if="{{showindex == 4}}">
+    <view class="moreFiltrate">
+      <!--特色-->
+      <view class="moreItem">
+        <view class="moreItemTitle">特色</view>
+        <view class="moreSelect">
+          <text wx:for="{{menuData.tedian}}" wx:key="index" bindtap="getFeatureindex" data-featureindex="{{index}}" class="{{featureindex==index?'active':''}}">{{item}}</text>
+        </view>
+      </view>
+      <!--售卖状态-->
+      <view class="moreItem">
+        <view class="moreItemTitle">售卖状态</view>
+        <view class="moreSelect">
+          <text wx:for="{{menuData.zhuangtai}}" wx:key="index" bindtap="getSellindex" data-sellindex="{{index}}" class="{{sellindex==index?'active':''}}">{{item}}</text>
+        </view>
+      </view>
+    </view>
+    <!--重置-->
+    <view class="stateBtn reset" bindtap="reset">重置</view>
+    <!--确认-->
+    <view class="stateBtn sureBtn" bindtap="sureBtn">确认</view>
+  </view>
+</view>
+<!--蒙版-->
+<view class="shadow" bindtap="hiddenshadow" wx:if="{{showshadow}}"></view>
+
+<!--房型列表-->
+<view class="recomList bgColor">
+  <view class="houseList recom borderTopBott" wx:for="{{listData}}" wx:key="index" id="{{item.ID}}" bindtap="toNewHouseDetail">
+    <view class="houseImg" style="text-align: center;">
+      <image src="{{item.fengmiantu.sizes.medium}}" class="recomImg" wx:if="{{item.fengmiantu.sizes.medium}}"></image>
+      <text class="noImg" wx:else>暂无图片</text>
+    </view>
+    <view class="houseInfo">
+      <view class=" fontSize1rem recomMar">
+        {{item.title}}
+      </view>
+      <view class="houseAddr fontSize075 recomColor recomMar">
+        {{item.xiangmudizhi}}
+      </view>
+      <view class="info fontSize075 recomColor recomMar">
+        <text class="zhandi" wx:if="{{item.zhandimianji}}">占地{{item.zhandimianji}}㎡</text>
+        <text class="zhandi" wx:else>暂无数据</text>
+        <text class="price" wx:if="{{item.junjia}}">{{item.junjia}}元/平</text>
+        <text class="price" wx:else>暂无数据</text>
+      </view>
+      <view class="tagBox recomMar">
+        <text class="tag" wx:for="{{item.biaoqian}}">{{item}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="nowLoading" hidden="{{hidden}}">正在加载...</view>
+</view>
+
+<!--暂无数据-->
+<view class="noData" style="display: {{noData}}">暂无数据</view>
+<!--没有等多结果-->
+<view class="noMore" style="display:{{noMore}}">没有更多了...</view>
